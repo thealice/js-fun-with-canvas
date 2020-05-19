@@ -11,3 +11,10 @@ let isDrawing = false;
 // where to start and stop the line
 let lastX = 0;
 let lastY = 0; 
+
+
+function draw(e) {
+    console.log(e);
+}
+
+canvas.addEventListener('mousemove', draw)
