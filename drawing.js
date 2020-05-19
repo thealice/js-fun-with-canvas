@@ -6,12 +6,16 @@ canvas.height = window.innerHeight;
 ctx.strokeStyle = '#BADASS';
 ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
+ctx.lineWidth = 100;
+// ctx.globalCompositeOperation = 'multiply';
 
 let isDrawing = false;
 // where to start and stop the line
 let lastX = 0;
 let lastY = 0; 
+// color starts at red
 let hue = 0;
+// lineWidth starts by increasing in size
 let direction = true;
 
 
@@ -24,17 +28,20 @@ function draw(e) {
     // go to
     ctx.lineTo(e.offsetX, e.offsetY);
     ctx.stroke();
-    // update last x and y variables to be whereever they were while drawing
+    // update last x and y variables to be whereever they are while drawing
     [lastX, lastY] = [e.offsetX, e.offsetY];
+
     // increment hue
     hue++;
-    if(hue >= 360) {
+    if (hue >= 360) {
         hue = 0;
     }
-    if(ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+
+    // cycle lineWidth between 100 and 1 
+    if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
         direction = !direction;
     }
-    if(direction) {
+    if (direction) {
         ctx.lineWidth++;
     } else {
         ctx.lineWidth--;
@@ -45,6 +52,7 @@ function draw(e) {
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('mousedown', (e) => {
     isDrawing = true;
+    // start the line hwere you first put your mouse down (not where your last line leftoff)
     [lastX, lastY] = [e.offsetX, e.offsetY];
 });
 canvas.addEventListener('mouseup', () => isDrawing = false);
