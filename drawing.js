@@ -7,4 +7,7 @@ ctx.strokeStyle = '#BADASS';
 ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
 
-
+let isDrawing = false;
+// where to start and stop the line
+let lastX = 0;
+let lastY = 0; 
