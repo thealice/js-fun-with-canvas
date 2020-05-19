@@ -12,11 +12,13 @@ let isDrawing = false;
 // where to start and stop the line
 let lastX = 0;
 let lastY = 0; 
+let hue = 0;
 
 
 function draw(e) {
     if(!isDrawing) return; // strop the function from running when they are not moused down
     console.log(e);
+    ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
     ctx.beginPath();
     // start from
     ctx.moveTo(lastX, lastY);
@@ -25,6 +27,8 @@ function draw(e) {
     ctx.stroke();
     // update last x and y variables to be whereever they were while drawing
     [lastX, lastY] = [e.offsetX, e.offsetY];
+    // increment hue
+    hue++;
 
 }
 
